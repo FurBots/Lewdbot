@@ -30,7 +30,6 @@ bot.on('message', async msg => {
       var post = 0
       var flag = false
 
-      console.log(obj.length)
       for (let n = 0; n < obj.length; n++){
         flag = false
         for (let i = 0; i < blacklist.length; i++) {
@@ -45,7 +44,7 @@ bot.on('message', async msg => {
           break
         }
       }
-      console.log(attempt)
+
       if (attempt < obj.length){
         var postLink = 'https://e621.net/post/show/' + obj[post].id
         var embed = new RichEmbed()
@@ -58,6 +57,7 @@ bot.on('message', async msg => {
         msg.channel.send('Unable to find image')
       }
     })
+    break;
   }
 })
 
