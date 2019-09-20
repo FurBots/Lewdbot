@@ -11,6 +11,10 @@ search = function(url, callback){
   }
 
   request(options, function(error, response, json){
-    callback(json)
+    if (!error && response.statusCode == 200){
+      callback(json)
+    } else {
+      console.log(response.statusCode + ', error = ' + error)
+    }
   })
 }
