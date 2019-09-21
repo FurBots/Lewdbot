@@ -69,7 +69,7 @@ bot.on('message', async msg => {
 
     if (msg.channel.nsfw == true){
       var amount = args.shift()
-
+      msg.channel.send(amount)
       if (int(amount) <= 10){
 
         var url = urlBuild(args, str(amount), 'e621')
@@ -79,7 +79,9 @@ bot.on('message', async msg => {
           var flag = false
           var attempt = 0
 
+
           for (let n = 0; n < obj.length; n++){
+            msg.channel.send('n:' + str(n))
             flag = false
             for (let i = 0; i < blacklist.length; i++) {
               if(obj[n].tags.includes(blacklist[i])){
