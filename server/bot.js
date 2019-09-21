@@ -66,8 +66,8 @@ bot.on('message', async msg => {
     break;
 
     case 'e621-multi':
-    msg.channel.send("We're in the command now")
     if (msg.channel.nsfw == true){
+      msg.channel.send("NSFW is true")
       var amount = args.shift()
       if (int(amount) <= 10){
 
