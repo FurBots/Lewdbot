@@ -65,56 +65,42 @@ bot.on('message', async msg => {
 
     break;
 
-    /*case 'e621-multi':
-
-    args.shift();
+    case 'e621-multi':
 
     if (msg.channel.nsfw == true){
 
-      msg.channel.send(str(amount))
+      var url = urlBuild(args, args[0], 'e621')
+      search(url, function(data){
+        var obj = JSON.parse(data)
+        var attempt = 0
+        var flag = false
+        var embed = ''
 
-      if (amount <= 10){
-        var url = urlBuild(args, str(amount), 'e621')
-        search(url, function(data){
-
-          var obj = JSON.parse(data)
-          var flag = false
-          var attempt = 0
-
-
-          for (let n = 0; n < obj.length; n++){
-            flag = false
-            for (let i = 0; i < blacklist.length; i++) {
-              if(obj[n].tags.includes(blacklist[i])){
-                flag = true
-              }
-            }
-            if (flag == false){
-              var postLink = 'https://e621.net/post/show/' + obj[n].id
-              var embed = new RichEmbed()
-              .setTitle('Link')
-              .setURL(postLink)
-              .setImage(obj[n].file_url)
-
-              msg.channel.send(embed)
-            } else {
-              attempt += 1
+        for (let n = 0; n < obj.length; n++){
+          flag = false
+          for (let i = 0; i < blacklist.length; i++) {
+            if(obj[n].tags.includes(blacklist[i])){
+              flag = true
             }
           }
+          if (flag == true){
+            attempt += 1
+          } else {
+            var postLink = 'https://e621.net/post/show/' + obj[n].id
+            embed = new RichEmbed()
+            .setTitle('Link')
+            .setURL(postLink)
+            .setImage(obj[n].file_url)
 
-          if (attempt >= obj.length){
-            msg.channel.send('Unable to find images')
+            msg.channel.send(embed)
           }
-
-        })
-      } else {
-        msg.channel.send('Can only send 10 posts at once')
-      }
+        }
+      })
     } else {
       msg.channel.send('This command is for NSFW channels only')
     }
 
-    break;*/
+    break;
 
     case 'e926':
 
