@@ -22,40 +22,46 @@ bot.on('message', async msg => {
 
     case 'e621':
 
-    var url = urlBuild(args)
-    search(url, function(data){
-      var obj = JSON.parse(data)
-      var attempt = 0
-      var post = 0
-      var flag = false
+    if (channel.nsfw == true){
 
-      for (let n = 0; n < obj.length; n++){
-        flag = false
-        for (let i = 0; i < blacklist.length; i++) {
-          if(obj[n].tags.includes(blacklist[i])){
-            flag = true
+      var url = urlBuild(args)
+      search(url, function(data){
+        var obj = JSON.parse(data)
+        var attempt = 0
+        var post = 0
+        var flag = false
+
+        for (let n = 0; n < obj.length; n++){
+          flag = false
+          for (let i = 0; i < blacklist.length; i++) {
+            if(obj[n].tags.includes(blacklist[i])){
+              flag = true
+            }
+          }
+          if (flag == true){
+            attempt += 1
+          } else {
+            post = attempt
+            break
           }
         }
-        if (flag == true){
-          attempt += 1
+
+        if (attempt < obj.length){
+          var postLink = 'https://e621.net/post/show/' + obj[post].id
+          var embed = new RichEmbed()
+          .setTitle('Link')
+          .setURL(postLink)
+          .setImage(obj[post].file_url)
+
+          msg.channel.send(embed)
         } else {
-          post = attempt
-          break
+          msg.channel.send('Unable to find image')
         }
-      }
+      })
+    } else {
+      msg.channel.send('This command is for NSFW channels only')
+    }
 
-      if (attempt < obj.length){
-        var postLink = 'https://e621.net/post/show/' + obj[post].id
-        var embed = new RichEmbed()
-        .setTitle('Link')
-        .setURL(postLink)
-        .setImage(obj[post].file_url)
-
-        msg.channel.send(embed)
-      } else {
-        msg.channel.send('Unable to find image')
-      }
-    })
     break;
   }
 })
