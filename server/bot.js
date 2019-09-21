@@ -25,7 +25,7 @@ bot.on('message', async msg => {
 
     if (msg.channel.nsfw == true){
 
-      var url = urlBuild(args, '5', 'e621', false)
+      let url = urlBuild(args, '5', 'e621')
       search(url, function(data){
         var obj = JSON.parse(data)
         var attempt = 0
@@ -66,12 +66,14 @@ bot.on('message', async msg => {
     break;
 
     case 'e621-multi':
+
+    var amount = args.shift()
+
     if (msg.channel.nsfw == true){
 
-      if (args[0] <= 10){
+      if (amount <= 10){
 
-        var url = urlBuild(args, str(args[0]), 'e621', true)
-        msg.channel.send(url)
+        let url = urlBuild(args, str(amount), 'e621')
         search(url, function(data){
 
           var obj = JSON.parse(data)
@@ -115,7 +117,7 @@ bot.on('message', async msg => {
 
     case 'e926':
 
-    var url = urlBuild(args, '5', 'e926', false)
+    let url = urlBuild(args, '5', 'e926')
 
     search(url, function(data){
       var obj = JSON.parse(data)

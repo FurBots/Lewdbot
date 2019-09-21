@@ -1,7 +1,4 @@
-urlBuild = function(tags, amount, loc, multi){
-  if (multi == true){
-    tags.shift()
-  }
+urlBuild = function(tags, amount, loc){
   var url = 'https://' + loc + '.net/post/index.json?limit=' + amount + '&tags=order:random+'
   for (x in tags){
     if (x < tags.length){
