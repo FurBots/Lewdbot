@@ -36,8 +36,8 @@ jobs:
       - run:
           name: Transfer Binary
           command: |
-            scp ./builds/$APPNAME.tar.gz $USER@$SERVER:/home/circleci/builds
+            scp -P $PORT ./builds/$APPNAME.tar.gz $USER@$SERVER:/home/circleci/builds
       - run:
           name: Deploy
           command: |
-            ssh -P $PORT -t $USER@$SERVER "/home/circleci/bots/$APPNAME/deploy.sh"
+            ssh -p $PORT -t $USER@$SERVER "/home/circleci/bots/$APPNAME/deploy.sh"
