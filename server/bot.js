@@ -19,9 +19,7 @@ bot.on('message', async msg => {
   var args = msg.content.slice(prefix.length).trim().split(/ +/g);
   var cmd = args.shift().toLowerCase();
 
-  if (int(args[0]) != NaN){
-    var amount = args.shift()
-  }
+  var amount = int(args[0])
 
   switch(cmd){
 
@@ -71,8 +69,12 @@ bot.on('message', async msg => {
 
     case 'e621-multi':
 
+    args.shift()
+    
     if (msg.channel.nsfw == true){
+
       msg.channel.send(str(amount))
+
       if (amount <= 10){
         let url = urlBuild(args, str(amount), 'e621')
         search(url, function(data){
