@@ -72,7 +72,7 @@ bot.on('message', async msg => {
 
       if (int(amount) <= 10){
 
-        var url = urlBuild(args, amount, 'e621')
+        var url = urlBuild(args, str(amount), 'e621')
         search(url, function(data){
 
           var obj = JSON.parse(data)
