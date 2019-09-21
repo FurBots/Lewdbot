@@ -67,11 +67,11 @@ bot.on('message', async msg => {
 
     case 'e621-multi':
     if (msg.channel.nsfw == true){
-      
+
       if (args[0] <= 10){
 
         var url = urlBuild(args, str(args[0]), 'e621', true)
-
+        msg.channel.send(url)
         search(url, function(data){
 
           var obj = JSON.parse(data)
