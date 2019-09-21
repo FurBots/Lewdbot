@@ -19,7 +19,6 @@ bot.on('message', async msg => {
   var args = msg.content.slice(prefix.length).trim().split(/ +/g);
   var cmd = args.shift().toLowerCase();
 
-  msg.channel.send('Command: ' + cmd)
   switch(cmd){
 
     case 'e621':
@@ -67,7 +66,7 @@ bot.on('message', async msg => {
     break;
 
     case 'e621-multi':
-
+    msg.channel.send("We're in the command now")
     if (msg.channel.nsfw == true){
       var amount = args.shift()
       if (int(amount) <= 10){
@@ -111,6 +110,7 @@ bot.on('message', async msg => {
     } else {
       msg.channel.send('This command is for NSFW channels only')
     }
+
     break;
 
     case 'e926':
@@ -125,7 +125,7 @@ bot.on('message', async msg => {
 
       for (let n = 0; n < obj.length; n++){
         flag = false
-        for (let i = 0; i < blacklist.length; i++) {
+        for (let i = 0; i < e926blacklist.length; i++) {
           if(obj[n].tags.includes(e926blacklist[i])){
             flag = true
           }
