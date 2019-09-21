@@ -65,7 +65,7 @@ bot.on('message', async msg => {
 
     break;
 
-    case 'e621-multi':
+    /*case 'e621-multi':
 
     if (msg.channel.nsfw == true){
 
@@ -100,7 +100,7 @@ bot.on('message', async msg => {
       msg.channel.send('This command is for NSFW channels only')
     }
 
-    break;
+    break;*/
 
     case 'e926':
 
