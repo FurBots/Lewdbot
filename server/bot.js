@@ -92,6 +92,8 @@ bot.on('message', async msg => {
               .setTitle('Link')
               .setURL(postLink)
               .setImage(obj[n].file_url)
+
+              msg.channel.send(embed)
             } else {
               attempt += 1
             }
