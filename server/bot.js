@@ -83,7 +83,7 @@ bot.on('message', async msg => {
             flag = false
             for (let i = 0; i < blacklist.length; i++) {
               if(obj[n].tags.includes(blacklist[i])){
-                flag == true
+                flag = true
               }
             }
             if (flag == false){
