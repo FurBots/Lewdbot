@@ -19,8 +19,6 @@ bot.on('message', async msg => {
   var args = msg.content.slice(prefix.length).trim().split(/ +/g);
   var cmd = args.shift().toLowerCase();
 
-  var amount = int(args[0]);
-
   switch(cmd){
 
     case 'e621':
@@ -67,7 +65,7 @@ bot.on('message', async msg => {
 
     break;
 
-    case 'e621-multi':
+    /*case 'e621-multi':
 
     args.shift();
 
@@ -116,7 +114,7 @@ bot.on('message', async msg => {
       msg.channel.send('This command is for NSFW channels only')
     }
 
-    break;
+    break;*/
 
     case 'e926':
 
