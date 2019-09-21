@@ -65,7 +65,7 @@ bot.on('message', async msg => {
 
     break;
 
-    case 'e621-multi':
+    case 'e621_multi':
 
     if (msg.channel.nsfw == true){
       var amount = args.shift()
