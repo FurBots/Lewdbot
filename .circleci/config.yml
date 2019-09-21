@@ -40,4 +40,4 @@ jobs:
       - run:
           name: Deploy
           command: |
-            ssh -p $PORT -t $USER@$SERVER "/home/circleci/bots/$APPNAME/deploy.sh"
+            ssh -P $PORT -t $USER@$SERVER "/home/circleci/bots/$APPNAME/deploy.sh"
