@@ -19,7 +19,7 @@ bot.on('message', async msg => {
   var args = msg.content.slice(prefix.length).trim().split(/ +/g);
   var cmd = args.shift().toLowerCase();
 
-  var amount = int(args[0])
+  var amount = int(args[0]);
 
   switch(cmd){
 
@@ -27,7 +27,7 @@ bot.on('message', async msg => {
 
     if (msg.channel.nsfw == true){
 
-      let url = urlBuild(args, '5', 'e621')
+      var url = urlBuild(args, '5', 'e621')
       search(url, function(data){
         var obj = JSON.parse(data)
         var attempt = 0
@@ -69,14 +69,14 @@ bot.on('message', async msg => {
 
     case 'e621-multi':
 
-    args.shift()
-    
+    args.shift();
+
     if (msg.channel.nsfw == true){
 
       msg.channel.send(str(amount))
 
       if (amount <= 10){
-        let url = urlBuild(args, str(amount), 'e621')
+        var url = urlBuild(args, str(amount), 'e621')
         search(url, function(data){
 
           var obj = JSON.parse(data)
@@ -120,7 +120,7 @@ bot.on('message', async msg => {
 
     case 'e926':
 
-    let url = urlBuild(args, '5', 'e926')
+    var url = urlBuild(args, '5', 'e926')
 
     search(url, function(data){
       var obj = JSON.parse(data)
