@@ -6,7 +6,7 @@ search = function(url, callback){
   var options = {
     url: url,
     headers: {
-      'User-Agent': 'Lewdbot/0.1 (by NuclearBurger on E621)'
+      'User-Agent': 'Lewdbot/1.0 (by NuclearBurger on E621)'
     }
   }
 

@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    branches:
+      only:
+        - master
+    working_directory: ~/app
+    steps:
+      - checkout
+      - run:
+          name: install meteor
+          command: |
+            # only install meteor if bin isn't found
+            command -v meteor >/dev/null 2>&1 || curl https://install.meteor.com | /bin/sh
+      - run:
+          name: check versions
+          command: |
+            echo "Meteor version:"
+            # this forces Meteor to download whatever release your project is using
+            meteor --version
+            which meteor
+            echo "Meteor node version:"
+            meteor node -v
+            echo "Meteor npm version:"
+            meteor npm -v
+      - run:
+          name: install npm packages
+          command: meteor npm i
+      - run:
+          name: Build the Meteor App
+          command: |
+            meteor build ./builds
+            cd ./builds && ls
+            mv app.tar.gz $APPNAME.tar.gz
+      - run:
+          name: Transfer Binary
+          command: |
+            scp ./builds/$APPNAME.tar.gz $USER@$SERVER:/home/circleci/builds
+      - run:
+          name: Deploy
+          command: |
+            ssh -t $USER@$SERVER "/home/circleci/bots/$APPNAME/deploy.sh"
