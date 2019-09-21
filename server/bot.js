@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const request = require('request');
-const config = require('./config.json')
 const { RichEmbed } = require('discord.js');
 
 const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota']
@@ -61,4 +60,4 @@ bot.on('message', async msg => {
   }
 })
 
-bot.login(config.token);
+bot.login(process.env.BOT_TOKEN);
