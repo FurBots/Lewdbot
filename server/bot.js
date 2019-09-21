@@ -19,6 +19,7 @@ bot.on('message', async msg => {
   var args = msg.content.slice(prefix.length).trim().split(/ +/g);
   var cmd = args.shift().toLowerCase();
 
+  msg.channel.send('Command: ' + cmd)
   switch(cmd){
 
     case 'e621':
@@ -65,11 +66,10 @@ bot.on('message', async msg => {
 
     break;
 
-    case 'e621_multi':
+    case 'e621-multi':
 
     if (msg.channel.nsfw == true){
       var amount = args.shift()
-      msg.channel.send(amount)
       if (int(amount) <= 10){
 
         var url = urlBuild(args, str(amount), 'e621')
@@ -81,7 +81,6 @@ bot.on('message', async msg => {
 
 
           for (let n = 0; n < obj.length; n++){
-            msg.channel.send('n:' + str(n))
             flag = false
             for (let i = 0; i < blacklist.length; i++) {
               if(obj[n].tags.includes(blacklist[i])){
