@@ -22,7 +22,7 @@ bot.on('message', async msg => {
 
     case 'e621':
 
-    if (channel.nsfw == true){
+    if (msg.channel.nsfw == true){
 
       var url = urlBuild(args)
       search(url, function(data){
