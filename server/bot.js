@@ -67,9 +67,12 @@ bot.on('message', async msg => {
 
     case 'e621-multi':
     if (msg.channel.nsfw == true){
-      var amount = args.shift()
+
+      var amount = int(args[0])
+      args.shift()
       msg.channel.send(str(amount))
-      if (int(amount) <= 10){
+      if (amount <= 10){
+
         msg.channel.send('Amount is less than 10')
         var url = urlBuild(args, str(amount), 'e621')
         search(url, function(data){
