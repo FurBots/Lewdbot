@@ -65,11 +65,13 @@ bot.on('message', async msg => {
 
     break;
 
-    /*case 'e621-multi':
+    case 'e621-multi':
 
     if (msg.channel.nsfw == true){
+      var amount = args.shift()
+      var tags = args
 
-      var url = urlBuild(args, args[0], 'e621')
+      var url = urlBuild(tags, amount, 'e621')
       search(url, function(data){
         var obj = JSON.parse(data)
         var attempt = 0
@@ -100,7 +102,7 @@ bot.on('message', async msg => {
       msg.channel.send('This command is for NSFW channels only')
     }
 
-    break;*/
+    break;
 
     case 'e926':
 
