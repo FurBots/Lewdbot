@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const request = require('request');
 const { RichEmbed } = require('discord.js');
 
-const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota']
+const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota', 'trials_in_tainted_space']
 const e926blacklist = ['gore', 'guro', 'death', 'snuff']
 
 bot.on('ready', () => {
