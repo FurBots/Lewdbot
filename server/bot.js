@@ -71,33 +71,37 @@ bot.on('message', async msg => {
       var amount = args.shift()
       var tags = args
 
-      var url = urlBuild(tags, amount, 'e621')
-      search(url, function(data){
-        var obj = JSON.parse(data)
-        var attempt = 0
-        var flag = false
-        var embed = ''
+      if (amount <= 5){
+        var url = urlBuild(tags, amount, 'e621')
+        search(url, function(data){
+          var obj = JSON.parse(data)
+          var attempt = 0
+          var flag = false
+          var embed = ''
 
-        for (let n = 0; n < obj.length; n++){
-          flag = false
-          for (let i = 0; i < blacklist.length; i++) {
-            if(obj[n].tags.includes(blacklist[i])){
-              flag = true
+          for (let n = 0; n < obj.length; n++){
+            flag = false
+            for (let i = 0; i < blacklist.length; i++) {
+              if(obj[n].tags.includes(blacklist[i])){
+                flag = true
+              }
+            }
+            if (flag == true){
+              attempt += 1
+            } else {
+              var postLink = 'https://e621.net/post/show/' + obj[n].id
+              embed = new RichEmbed()
+              .setTitle('Link')
+              .setURL(postLink)
+              .setImage(obj[n].file_url)
+
+              msg.channel.send(embed)
             }
           }
-          if (flag == true){
-            attempt += 1
-          } else {
-            var postLink = 'https://e621.net/post/show/' + obj[n].id
-            embed = new RichEmbed()
-            .setTitle('Link')
-            .setURL(postLink)
-            .setImage(obj[n].file_url)
-
-            msg.channel.send(embed)
-          }
-        }
-      })
+        })
+      } else {
+        msg.channel.send('No more than 5 posts at once (for the sake of rate limits)')
+      }
     } else {
       msg.channel.send('This command is for NSFW channels only')
     }
