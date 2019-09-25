@@ -5,6 +5,7 @@ const { RichEmbed } = require('discord.js');
 
 const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota', 'trials_in_tainted_space']
 const e926blacklist = ['gore', 'guro', 'death', 'snuff']
+const deleteReactID = '626423940088070164'
 
 bot.on('ready', () => {
   console.log('Successfully started')
@@ -54,7 +55,14 @@ bot.on('message', async msg => {
           .setURL(postLink)
           .setImage(obj[post].file_url)
 
-          msg.channel.send(embed)
+          var del = msg.guild.emojis.get(deleteReactID)
+          const message = await msg.channel.send(embed)
+
+          message.react(del)
+          const reactCollect = new Discord.ReactionCollector(message, emoji.id == deleteReactID, {1,1,1}).on('collect', emote =>{
+            message.delete()
+          });
+          
         } else {
           msg.channel.send('Unable to find image')
         }
