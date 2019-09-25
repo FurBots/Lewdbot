@@ -59,7 +59,8 @@ bot.on('message', async msg => {
           const message = msg.channel.send(embed)
 
           message.react(del)
-          const reactCollect = new Discord.ReactionCollector(message, emoji.id == deleteReactID, {1,1,1}).on('collect', emote =>{
+          const reactCollect = new Discord.ReactionCollector(message, emoji.id == deleteReactID, {1,1,1});
+          reactCollect.on('collect', emote =>{
             message.delete()
           });
 
