@@ -97,7 +97,7 @@ bot.on('message', async msg => {
               .setURL(postLink)
               .setImage(obj[n].file_url)
 
-              msg.channel.send(embed)
+              delByReact(embed)
             }
           }
         })
@@ -142,7 +142,7 @@ bot.on('message', async msg => {
         .setURL(postLink)
         .setImage(obj[post].file_url)
 
-        msg.channel.send(embed)
+        delByReact(embed)
       } else {
         msg.channel.send('Unable to find image')
       }
@@ -153,8 +153,8 @@ bot.on('message', async msg => {
 
   async function delByReact(emb){
     var m = await msg.channel.send(emb).then(function(m){
-      m.react('<a:RedAlert:618954680692637716>')
-      var filt = (react, u) => react.emoji.name === 'RedAlert' && u.id === msg.author.id;
+      m.react('❌')
+      var filt = (react, u) => react.emoji.name === '❌' && u.id === msg.author.id;
       const collect = m.createReactionCollector(filt, {time: 15000});
       collect.on('collect', react => {
         m.delete()
