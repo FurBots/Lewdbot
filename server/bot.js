@@ -161,7 +161,7 @@ bot.on('message', async msg => {
         collect.stop()
       });
       collect.on('end', collected =>{
-        if (!m.deleted){
+        if (m.deleted == false){
           m.clearReactions()
         }
       });
