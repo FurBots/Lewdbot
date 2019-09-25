@@ -160,6 +160,11 @@ bot.on('message', async msg => {
         m.delete()
         collect.stop()
       });
+      collect.on('end', collected =>{
+        if (!m.deleted){
+          m.clearReactions()
+        }
+      });
     })
   }
 
