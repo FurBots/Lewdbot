@@ -55,14 +55,7 @@ bot.on('message', async msg => {
           .setURL(postLink)
           .setImage(obj[post].file_url)
 
-          //var del = msg.guild.emojis.get(deleteReactID)
-          msg.channel.send(embed)
-
-          /*message.react(del)
-          const reactCollect = new Discord.ReactionCollector(message, emoji.id == deleteReactID);
-          reactCollect.on('collect', emote =>{
-            message.delete()
-          });*/
+          delByReact(embed)
 
         } else {
           msg.channel.send('Unable to find image')
@@ -157,6 +150,20 @@ bot.on('message', async msg => {
 
     break;
   }
+
+  async function delByReact(emb){
+    var m = await msg.channel.send(emb).then(function(m){
+      var delEm = msg.guild.emojis.get(deleteReactID)
+      m.react(delEm)
+      var filt = (react, u) => react.emoji.id == deleteReactID && u.id === msg.author.id;
+
+      const collect = m.createReactionCollector(filt, {time: 15000});
+      collect.on('collect', react => {
+        collect.stop().then(m.delete());
+      });
+    })
+  }
+
 })
 
 bot.login(process.env.BOT_TOKEN);
