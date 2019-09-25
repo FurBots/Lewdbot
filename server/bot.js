@@ -153,14 +153,14 @@ bot.on('message', async msg => {
 
   async function delByReact(emb){
     var m = await msg.channel.send(emb).then(function(m){
-      msg.channel.send('Reacting to message')
       m.react('❌')
       var filt = (react, u) => react.emoji.name === '❌' && u.id === msg.author.id;
-      msg.channel.send('Creating collector')
       const collect = m.createReactionCollector(filt, {time: 15000});
+      msg.channel.send('Collector active')
       collect.on('collect', react => {
         msg.channel.send('Emoji collected')
-        collect.stop().then(m.delete());
+        m.delete()
+        collect.stop()
       });
     })
   }
