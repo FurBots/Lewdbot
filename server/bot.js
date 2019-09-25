@@ -55,14 +55,14 @@ bot.on('message', async msg => {
           .setURL(postLink)
           .setImage(obj[post].file_url)
 
-          var del = msg.guild.emojis.get(deleteReactID)
-          const message = msg.channel.send(embed)
+          //var del = msg.guild.emojis.get(deleteReactID)
+          msg.channel.send(embed)
 
-          message.react(del)
+          /*message.react(del)
           const reactCollect = new Discord.ReactionCollector(message, emoji.id == deleteReactID);
           reactCollect.on('collect', emote =>{
             message.delete()
-          });
+          });*/
 
         } else {
           msg.channel.send('Unable to find image')
