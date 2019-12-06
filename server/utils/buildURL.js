@@ -4,7 +4,7 @@ urlBuild = function(tags, amount, loc){
     if (x < tags.length){
       url += tags[x] + '+';
     } else {
-          url += tags[x];
+      url += tags[x];
     }
   }
   return url

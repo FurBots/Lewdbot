@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const request = require('request');
 const { RichEmbed } = require('discord.js');
 
-const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota', 'trials_in_tainted_space']
+const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota', 'trials_in_tainted_space', 'scat', 'vomit', 'blood', 'shocking_(artist)', 'fart', 'rape', 'forced', 'hyper']
 const e926blacklist = ['gore', 'guro', 'death', 'snuff']
 const deleteReactID = '626423940088070164'
 
