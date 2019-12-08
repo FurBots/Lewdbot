@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const request = require('request');
 const { RichEmbed } = require('discord.js');
 
-const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota', 'trials_in_tainted_space', 'scat', 'vomit', 'blood', 'shocking_(artist)', 'fart', 'rape', 'forced', 'hyper']
+const blacklist = ['cub', 'young', 'gore', 'guro', 'death', 'snuff', 'loli', 'shota', 'trials_in_tainted_space', 'scat', 'vomit', 'blood', 'shocking_(artist)', 'fart', 'rape', 'forced', 'hyper', 'vore']
 const e926blacklist = ['gore', 'guro', 'death', 'snuff']
 const deleteReactID = '626423940088070164'
 
@@ -155,7 +155,7 @@ bot.on('message', async msg => {
     var m = await msg.channel.send(emb).then(function(m){
       m.react('❌')
       var filt = (react, u) => react.emoji.name === '❌' && u.id === msg.author.id;
-      const collect = m.createReactionCollector(filt, {time: 30000});
+      const collect = m.createReactionCollector(filt, {time: 90000});
       collect.on('collect', react => {
         m.delete()
         collect.stop()
